@@ -1,6 +1,7 @@
 # Sale Purchase Link
 
 A custom Odoo 19.0 module that adds a direct link between Sales Orders and Purchase Orders.
+Place sale_purchase_link folder under "addons".
 
 ## Features
 
