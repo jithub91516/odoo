@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_purchase_link" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.purchase.link</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Smart Button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        icon="fa-shopping-cart"
+                        type="object"
+                        name="action_view_purchase_order"
+                        invisible="not purchase_order_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Purchase</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- Create Purchase Order button (hidden once PO exists) -->
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_create_purchase_order"
+                        string="Create PO"
+                        type="object"
+                        class="btn-primary"
+                        invisible="not id or purchase_order_id != False"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- PO form: Smart Button linking back to SO -->
+    <record id="view_purchase_order_form_inherit_sale_link" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.sale.link</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                        icon="fa-shopping-bag"
+                        type="object"
+                        name="action_view_sale_order"
+                        invisible="not sale_order_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Sales Order</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
